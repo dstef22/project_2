@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>347</width>
-    <height>429</height>
+    <height>454</height>
    </rect>
   </property>
   <property name="font">
@@ -808,8 +808,33 @@
      <height>18</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuSettings">
+    <property name="title">
+     <string>Settings</string>
+    </property>
+    <addaction name="actionNew_Game"/>
+    <addaction name="separator"/>
+    <addaction name="actionDefault_words"/>
+    <addaction name="actionPokemon_Words"/>
+   </widget>
+   <addaction name="menuSettings"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionNew_Game">
+   <property name="text">
+    <string>New Game</string>
+   </property>
+  </action>
+  <action name="actionDefault_words">
+   <property name="text">
+    <string>Default Words</string>
+   </property>
+  </action>
+  <action name="actionPokemon_Words">
+   <property name="text">
+    <string>Pokemon Words</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

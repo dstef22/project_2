@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(347, 429)
+        MainWindow.resize(347, 454)
         font = QtGui.QFont()
         font.setPointSize(24)
         font.setBold(True)
@@ -317,10 +317,23 @@ class Ui_MainWindow(object):
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 347, 18))
         self.menubar.setObjectName("menubar")
+        self.menuSettings = QtWidgets.QMenu(self.menubar)
+        self.menuSettings.setObjectName("menuSettings")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
+        self.actionNew_Game = QtWidgets.QAction(MainWindow)
+        self.actionNew_Game.setObjectName("actionNew_Game")
+        self.actionDefault_words = QtWidgets.QAction(MainWindow)
+        self.actionDefault_words.setObjectName("actionDefault_words")
+        self.actionPokemon_Words = QtWidgets.QAction(MainWindow)
+        self.actionPokemon_Words.setObjectName("actionPokemon_Words")
+        self.menuSettings.addAction(self.actionNew_Game)
+        self.menuSettings.addSeparator()
+        self.menuSettings.addAction(self.actionDefault_words)
+        self.menuSettings.addAction(self.actionPokemon_Words)
+        self.menubar.addAction(self.menuSettings.menuAction())
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -328,6 +341,10 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Wordpy"))
+        self.menuSettings.setTitle(_translate("MainWindow", "Settings"))
+        self.actionNew_Game.setText(_translate("MainWindow", "New Game"))
+        self.actionDefault_words.setText(_translate("MainWindow", "Default Words"))
+        self.actionPokemon_Words.setText(_translate("MainWindow", "Pokemon Words"))
 
 
 if __name__ == "__main__":

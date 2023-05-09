@@ -4,10 +4,11 @@ from random import randint
 """
     Final Project 2: Wordpy
         Using code from an old lab I am creating a wordle game with a gui.
-        TODO: I plan on making an executable for this file,
-        and I plan on making a way to switch between which file the word comes from,
-        and I plan on showing which letters have benn guessed already.
-        and I plan on making a way to restart the game in the gui.
+        You are able to switch which list the word to guess is pulled from.
+        You can restart the game to guess a different word from the list.
+        Word lists were made using a separate script I created called word_file_maker.py.
+        
+        TODO: I plan on making an executable for this file
 
     Project author:
     Dallin Stefanidis
@@ -15,7 +16,8 @@ from random import randint
     https://github.com/dstef22
 
     Credit and disclaimer:
-    Original code was created in a lab in Intro to CS 1.
+    Project is based on original code that was created 
+    with help in a lab in the class Intro to CS 1.
     
     File desc:
     This is the controller for the gui.
@@ -36,6 +38,7 @@ class Controller(QMainWindow, Ui_MainWindow):
         """
         super().__init__(*args, **kwargs)
         self.setupUi(self)
+        self.setFixedSize(self.size())
 
         self.guesses = 0
         self.won = False
@@ -43,10 +46,14 @@ class Controller(QMainWindow, Ui_MainWindow):
         self.inputText.setStyleSheet('color: white')
         self.win_output.setStyleSheet('color: white')
 
-        self.files = ['wordpy_words_general.csv', 'wordpy_words_pokemon.csv']
+        self.actionNew_Game.triggered.connect(lambda: self.new_game())
+        self.actionDefault_words.triggered.connect(lambda: self.change_file('wordpy_words_general.csv'))
+        self.actionPokemon_Words.triggered.connect(lambda: self.change_file('wordpy_words_pokemon.csv'))
+
+        self.word_file = 'wordpy_words_general.csv'
         # Set up secret word
         self.__word_list = []
-        with open(self.files[0], 'r') as file:
+        with open(self.word_file, 'r') as file:
             self.__word_list = file.readlines()
             self.__word_list = [word.strip() for word in self.__word_list]
             self.__answer = self.__word_list[randint(0, len(self.__word_list) - 1)]
@@ -72,7 +79,8 @@ class Controller(QMainWindow, Ui_MainWindow):
                     self.inputText.setText('. . .')
                     self.guesses += 1
                 else:
-                    self.win_output.setText(f'{self.inputText.text()} not in word list')
+                    self.win_output.setStyleSheet('color: white')
+                    self.win_output.setText(f"'{self.inputText.text()}' not in word list")
             elif event.key() == 16777219:
                 if self.inputText.text() == '. . .':
                     self.inputText.clear()
@@ -364,3 +372,88 @@ class Controller(QMainWindow, Ui_MainWindow):
         elif self.guesses == 5:
             self.win_output.setText(f"The word was '{self.__answer.upper()}'")
             self.win_output.setStyleSheet('color: #FDDA0D')
+
+    def new_game(self) -> None:
+        self.guesses = 0
+        self.won = False
+        self.inputText.setText('. . .')
+        self.__word_list = []
+        with open(self.word_file, 'r') as file:
+            self.__word_list = file.readlines()
+            self.__word_list = [word.strip() for word in self.__word_list]
+            self.__answer = self.__word_list[randint(0, len(self.__word_list) - 1)]
+
+        # clear word boxes
+        self.win_output.setText('')
+        self.letter_1.setText('')
+        self.letter_2.setText('')
+        self.letter_3.setText('')
+        self.letter_4.setText('')
+        self.letter_5.setText('')
+        self.letter_6.setText('')
+        self.letter_7.setText('')
+        self.letter_8.setText('')
+        self.letter_9.setText('')
+        self.letter_10.setText('')
+        self.letter_11.setText('')
+        self.letter_12.setText('')
+        self.letter_13.setText('')
+        self.letter_14.setText('')
+        self.letter_15.setText('')
+        self.letter_16.setText('')
+        self.letter_17.setText('')
+        self.letter_18.setText('')
+        self.letter_19.setText('')
+        self.letter_20.setText('')
+        self.letter_21.setText('')
+        self.letter_22.setText('')
+        self.letter_23.setText('')
+        self.letter_24.setText('')
+        self.letter_25.setText('')
+        self.letter_26.setText('')
+        self.letter_27.setText('')
+        self.letter_28.setText('')
+        self.letter_29.setText('')
+        self.letter_30.setText('')
+
+        # clear style sheets
+        self.letter_1.setStyleSheet('')
+        self.letter_2.setStyleSheet('')
+        self.letter_3.setStyleSheet('')
+        self.letter_4.setStyleSheet('')
+        self.letter_5.setStyleSheet('')
+        self.letter_6.setStyleSheet('')
+        self.letter_7.setStyleSheet('')
+        self.letter_8.setStyleSheet('')
+        self.letter_9.setStyleSheet('')
+        self.letter_10.setStyleSheet('')
+        self.letter_11.setStyleSheet('')
+        self.letter_12.setStyleSheet('')
+        self.letter_13.setStyleSheet('')
+        self.letter_14.setStyleSheet('')
+        self.letter_15.setStyleSheet('')
+        self.letter_16.setStyleSheet('')
+        self.letter_17.setStyleSheet('')
+        self.letter_18.setStyleSheet('')
+        self.letter_19.setStyleSheet('')
+        self.letter_20.setStyleSheet('')
+        self.letter_21.setStyleSheet('')
+        self.letter_22.setStyleSheet('')
+        self.letter_23.setStyleSheet('')
+        self.letter_24.setStyleSheet('')
+        self.letter_25.setStyleSheet('')
+        self.letter_26.setStyleSheet('')
+        self.letter_27.setStyleSheet('')
+        self.letter_28.setStyleSheet('')
+        self.letter_29.setStyleSheet('')
+        self.letter_30.setStyleSheet('')
+
+    def change_file(self, file) -> None:
+        """
+        Change the file to desired file to pick words from,
+        then reset the game.
+        :param file: str, a csv file containing 5-letter words
+        :return: None
+        """
+        self.word_file = file
+        self.new_game()
