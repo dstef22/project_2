@@ -284,9 +284,9 @@ class Controller(QMainWindow, Ui_MainWindow):
                     elif let == 2:
                         self.letter_25.setStyleSheet('background-color: green; color: white')
                     elif let == 3:
-                        self.letter_21.setStyleSheet('background-color: green; color: white')
-                    elif let == 4:
                         self.letter_22.setStyleSheet('background-color: green; color: white')
+                    elif let == 4:
+                        self.letter_21.setStyleSheet('background-color: green; color: white')
                 elif user_guess[let] in self.__answer:
                     if let == 0:
                         self.letter_23.setStyleSheet('background-color: #FDDA0D; color: white')
@@ -295,9 +295,9 @@ class Controller(QMainWindow, Ui_MainWindow):
                     elif let == 2:
                         self.letter_25.setStyleSheet('background-color: #FDDA0D; color: white')
                     elif let == 3:
-                        self.letter_21.setStyleSheet('background-color: #FDDA0D; color: white')
-                    elif let == 4:
                         self.letter_22.setStyleSheet('background-color: #FDDA0D; color: white')
+                    elif let == 4:
+                        self.letter_21.setStyleSheet('background-color: #FDDA0D; color: white')
                 else:
                     if let == 0:
                         self.letter_23.setStyleSheet('color: white')
@@ -306,9 +306,9 @@ class Controller(QMainWindow, Ui_MainWindow):
                     elif let == 2:
                         self.letter_25.setStyleSheet('color: white')
                     elif let == 3:
-                        self.letter_21.setStyleSheet('color: white')
-                    elif let == 4:
                         self.letter_22.setStyleSheet('color: white')
+                    elif let == 4:
+                        self.letter_21.setStyleSheet('color: white')
         elif self.guesses == 5:
             # set first row to each letter
             self.letter_28.setText(user_guess[0].upper())
