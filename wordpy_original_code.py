@@ -6,8 +6,7 @@ import random
         You are able to switch which list the word to guess is pulled from.
         You can restart the game to guess a different word from the list.
         Word lists were made using a separate script I created called word_file_maker.py.
-        
-        TODO: I plan on making an executable for this file
+        You can start the game using the executable file provided.
 
     Project author:
     Dallin Stefanidis
